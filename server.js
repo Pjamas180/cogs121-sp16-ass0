@@ -2,10 +2,15 @@
 const http = require("http");
 const path = require("path");
 
+var express = require('express');
+var handlebars = require('express-handlebars');
+var mongoose = require('mongoose');
+
 var app = express();
 
 var router = {
-    index: require("./routes/index")
+    index: require("./routes/index"),
+    message: require("./routes/message")
 };
 
 var parser = {
@@ -20,6 +25,8 @@ var parser = {
 //     console.log("Database connected successfully.");
 // });
 
+var db = require('./db');
+
 // Middleware
 app.set("port", process.env.PORT || 3000);
 app.engine("html", handlebars());
@@ -31,6 +38,8 @@ app.use(parser.body.json());
 
 // Routes
 app.get("/", router.index.view);
+
+app.post("/message", router.message.send);
 
 // Start Server
 http.createServer(app).listen(app.get("port"), function() {
