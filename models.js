@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-var db = require('./db');
 
 var messageSchema = new mongoose.Schema({
 	"email": String,

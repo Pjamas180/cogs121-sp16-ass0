@@ -5,8 +5,8 @@ exports.send = function(req, res) {
     // your solution here
     var currentDate = new Date();
     var post = new models.messageSchema({
-    	email: req.email, 
-    	content: req.content, 
+    	email: req.body.email, 
+    	content: req.body.content, 
     	created: currentDate
     });
 
